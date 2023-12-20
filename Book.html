@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Book Library</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+  <!-- Custom Styles -->
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+    }
+
+    .book-list-item {
+      background-color: #ffffff;
+      border: 1px solid #dee2e6;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .remove-button {
+      background-color: #dc3545;
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+      <h1>Book Library</h1>
+      <h4>Manage Your Book Collection</h4>
+
+      <form id="bookForm">
+          <input type="text" placeholder="Book Title" id="bookTitle" required>
+          <input type="text" placeholder="Author" id="author" required>
+          <input type="number" placeholder="Publication Year" id="publicationYear" required>
+        <button type="button" class="btn btn-primary" onclick="addBook()">Add Book</button>
+      </form>
+
+    <!-- Book List -->
+    <div id="bookList"></div>
+
+
+  <!-- Bootstrap JS and Popper.js -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <script>
+    function addBook() {
+      // Get form values
+      var title = document.getElementById('bookTitle').value;
+      var author = document.getElementById('author').value;
+      var publicationYear = document.getElementById('publicationYear').value;
+
+      // Create book list item
+      var listItem = document.createElement('div');
+      listItem.classList.add('book-list-item');
+      listItem.innerHTML =  title + ' by ' + author + ', Year: ' + publicationYear + 
+      '<br><button class="remove-button" onclick="removeBook(this)">Remove</button>';
+
+      document.getElementById('bookList').appendChild(listItem);
+
+      document.getElementById('bookForm').reset();
+    }
+
+    function removeBook(button) {
+      var listItem = button.parentNode;
+      document.getElementById('bookList').removeChild(listItem);
+    }
+  </script>
+</body>
+</html>
